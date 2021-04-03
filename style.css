@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #24262c;
+}
+
+.outer-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  touch-action: none;
+}
+
+.dice-container {
+  width: 198px;
+  height: 198px;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  z-index: 999;
+  transition: transform 0.2s ease 0;
+  -webkit-transition: transform 0.2s ease 0;
+  touch-action: none;
+  user-select: none;
+}
+
+.dice-container:hover {
+  cursor: pointer;
+  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+}
+
+#dice {
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 1s;
+  -webkit-transition: transform 1s;
+  touch-action: none;
+  user-select: none;
+}
+
+#dice figure {
+  width: 100%;
+  height: 100%;
+  margin: 16px;
+  padding: 16px;
+  position: absolute;
+  border-radius: 5%;
+  background: #e7e7e7;
+  box-shadow: inset 0 10px #fff,
+              inset 0 -10px #bbb,
+              inset 10px 0 #d7d7d7,
+              inset -10px 0 #d7d7d7;
+  user-select: none;
+}
+
+.dot {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 8px;
+  background: #333;
+  box-shadow: inset 0 6px #111,
+              inset 0 -6px #555;
+}
+
+.fix-button {
+  position: fixed;
+  bottom: 70px;
+  left: 20px;
+  z-index: 997;
+}
+
+.button {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #fff;
+  outline: none;
+  border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #fff;
+  background: transparent;
+  border-color: #fff;
+}
+
+/* 1 */
+.front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 6 & 4 */
+.back, .right {
+  display: flex;
+  justify-content: space-between;
+}
+.back .column, .right .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 3 */
+.left {
+  display: flex;
+  justify-content: space-between;
+}
+.left .dot:nth-of-type(2) {
+  align-self: center;
+}
+.left .dot:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+/* 2 */
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+.top .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+/* 5 */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom .column {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.bottom .column:nth-of-type(2) {
+  justify-content: center;
+}
+
+#dice .front {
+  transform: rotateY(0deg) translateZ(100px);
+  -webkit-transform: rotateY(0deg) translateZ(100px);
+}
+#dice .back {
+  transform: rotateX(180deg) translateZ(100px);
+  -webkit-transform: rotateX(180deg) translateZ(100px);
+}
+#dice .right {
+  transform: rotateY(90deg) translateZ(100px);
+  -webkit-transform: rotateY(90deg) translateZ(100px);
+}
+#dice .left {
+  transform: rotateY(-90deg) translateZ(100px);
+  -webkit-transform: rotateY(-90deg) translateZ(100px);
+}
+#dice .top {
+  transform: rotateX(90deg) translateZ(100px);
+  -webkit-transform: rotateX(90deg) translateZ(100px);
+}
+#dice .bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+  -webkit-transform: rotateX(-90deg) translateZ(100px);
+}
+
+#dice.show-front {
+  transform: translateZ(-100px) rotateY(0deg);
+  -webkit-transform: translateZ(-100px) rotateY(0deg);
+}
+#dice.show-back {
+  transform: translateZ(-100px) rotateX(-180deg);
+  -webkit-transform: translateZ(-100px) rotateX(-180deg);
+}
+#dice.show-right {
+  transform: translateZ(-100px) rotateY(-90deg);
+  -webkit-transform: translateZ(-100px) rotateY(-90deg);
+}
+#dice.show-left {
+  transform: translateZ(-100px) rotateY(90deg);
+  -webkit-transform: translateZ(-100px) rotateY(90deg);
+}
+#dice.show-top {
+  transform: translateZ(-100px) rotateX(-90deg);
+  -webkit-transform: translateZ(-100px) rotateX(-90deg);
+}
+#dice.show-bottom {
+  transform: translateZ(-100px) rotateX(90deg);
+  -webkit-transform: translateZ(-100px) rotateX(90deg);
+}
+#dice.show-same {
+  transform: translateZ(-100px) rotateX(360deg);
+  -webkit-transform: translateZ(-100px) rotateX(360deg);
+}
